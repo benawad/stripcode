@@ -1,0 +1,85 @@
+<div class="flex items-center flex-wrap">
+  <form phx-change="update">
+  <select name="lang" class="mr-4 mt-2">
+    <%= for l <- ["all languages",
+    "python",
+    "javascript",
+    "typescript",
+    "ruby",
+    "html",
+    "swift",
+    "c",
+    "objective-c",
+    "shell",
+    "java",
+    "c++",
+    "go",
+    "php",
+    ] do %>
+    <option <%= if l == @currentLang, do: "selected", else: "" %> value="<%= l %>"><%= l %></option>
+    <% end %>
+  </select></form>
+<div class="mr-4 mt-2 text-lg">Your Total Points: <%= @totalPoints %></div>
+<div class="mr-4 mt-2 text-lg">Your Rank: #<%= @currentRank - 1 %></div>
+<div class="mt-2 text-lg">Active users: <%= @numActiveUsers %></div>
+</div>
+<%= if assigns[:code] do %>
+<h1 class="my-8 text-4xl"><%= @filename %></h1>
+<pre onmousedown='return false;' onselectstart='return false;' class="mb-8 w-full rounded">
+  <code  onmousedown='return false;' onselectstart='return false;' phx-hook="CodeSnippet" id="main-code-block" class="language-<%= String.replace(String.replace(@codeLang, "+", "p"), "-", "") %>>">
+<%= @code %>
+</code>
+</pre>
+<div class="mr-2 mb-4 text-lg"><%= @points %> points</div>
+<%= if @numRemainingBlocks > 0 and not @timer do %>
+<button
+  class="mb-4 mr-2 py-2 px-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none"
+  phx-click="showAnotherBlock"
+>
+  reveal next block (<%= @numRemainingBlocks %> remaining)
+</button>
+<button
+  class="mb-4 py-2 px-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none"
+  phx-click="showEntireCode"
+>
+  show all code
+</button>
+<% end %>
+<div class="text-3xl mt-4 mb-4">Which repo is the code from?</div>
+<%= for item <- @answers do %>
+<div class="mb-4">
+  <button
+    class="bg-sandy <%= if @guessGitHubRepoId == item.githubRepoId, do:
+    "bg-red-100", else: "" %> <%= if @publicCorrectGitHubRepoId ==
+    item.githubRepoId, do: "bg-green-100", else: "" %> rounded px-4 py-4
+    text-left <%= if @publicCorrectGitHubRepoId != "", do: "", else:
+    "hover:border-gray-400" %> border" phx-click="onAnswer"
+    phx-value-githubRepoId="<%= item.githubRepoId %>"
+    <%= if @publicCorrectGitHubRepoId != "", do: "disabled", else: "" %>
+    >
+    <span class="text-bblack font-medium"><%= item.ownerAndName %></span> <br />
+    <span class="text-lblack text-sm"> <%= item.description %> </span>
+  </button>
+</div>
+<% end %> <%= if @guessGitHubRepoId != "" do %>
+<div class="mt-12 mb-4 flex">
+  <%= if @guessGitHubRepoId == @publicCorrectGitHubRepoId do %>
+  <div class="bg-green-100 text-green-900 flex p-4 text-3xl rounded">
+    [correct] +<%= @points %> points
+  </div>
+  <% else %>
+  <div class="bg-red-100 text-red-900 flex p-4 text-3xl rounded">
+    [wrong] -30 points
+  </div>
+  <% end %>
+</div>
+<button
+  class="mb-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none"
+  phx-click="nextQuestion"
+>
+  next question
+</button>
+<% end %>
+<% else %>
+<div class="mt-8 text-lg">You finished all the questions for this programming language.</div>
+<% end %>

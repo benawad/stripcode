@@ -1,0 +1,12 @@
+<div class="mb-32">
+  <div class="grid grid-cols-3">
+    <div class="bg-gray-600 text-white p-4 text-center">Rank</div>
+    <div class="bg-gray-600 text-white p-4 text-center">Name</div>
+    <div class="bg-gray-600 text-white p-4 text-center">Points</div> <%= for {user, idx} <- Enum.with_index(@users) do %> <div class="border-gray-400 border-b p-4 text-center"><%= idx %></div>
+    <div class="border-gray-400 border-b p-4 flex items-center">
+      <img class="w-8 h-8 rounded-full" src="<%= user.avatarUrl %>" />
+      <div class="ml-4"><%= user.username %></div>
+    </div>
+    <div class="border-gray-400 border-b p-4 text-center"> <%= user.points %> </div> <% end %>
+  </div>
+</div>

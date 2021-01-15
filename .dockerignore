@@ -1,0 +1,3 @@
+_build
+.elixir_ls
+node_modules

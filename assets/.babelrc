@@ -1,0 +1,29 @@
+{
+  "presets": ["@babel/preset-env"],
+  "plugins": [
+    [
+      "prismjs",
+      {
+        "languages": [
+          "python",
+          "javascript",
+          "typescript",
+          "ruby",
+          "html",
+          "swift",
+          "c",
+          "objectivec",
+          "shell",
+          "java",
+          "cpp",
+          "go",
+          "php"
+        ],
+        // themes can be found in this directory:
+        // assets/node_modules/prismjs/themes
+        "theme": "tomorrow",
+        "css": true
+      }
+    ]
+  ]
+}

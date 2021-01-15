@@ -1,0 +1,22 @@
+<h1 class="text-4xl mb-2">Rules</h1>
+<ul class="mb-4">
+  <li>The objective is to guess which GitHub repo a code snippet came from.</li>
+  <li>The longer you wait to answer, the more the code will "strip" and the more points you will lose.</li>
+</ul>
+<a class="mb-4 py-2 px-4 bg-tomato text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none" href="/ranked">start playing</a>
+<div class="mt-8">
+  <a href="https://github.com/benawad/stripcode">(coded with Elixir and the Phoenix framework)</a>
+</div>
+<h1 class="mt-16 text-3xl mb-2">FAQ</h1>
+<h1 class="mt-6 text-2xl mb-2">How did you pick which repos to include?</h1>
+<ul class="mb-4">
+  <li>I picked the 1,000 most starred repos on GitHub.</li>
+</ul>
+<h1 class="mt-6 text-2xl mb-2">How come X programming language is not included?</h1>
+<ul class="mb-4">
+  <li>It didn't have enough repos in the top 1K. If you have a list of 20+ popular repos in a language, send it to me <a href="https://twitter.com/benawad">twitter.com/benawad</a> and I'll add them.</li>
+</ul>
+<h1 class="mt-6 text-2xl mb-2">The leaderboard point value is wrong</h1>
+<ul class="mb-4">
+  <li>The leaderboard has a cache-control of 10 seconds, try refreshing the page.</li>
+</ul>

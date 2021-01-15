@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html class="bg-owhite" lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <%= csrf_meta_tag() %> <%= live_title_tag assigns[:page_title] || "StripCode" <> (if assigns[:suffix], do: " · " <> assigns[:suffix], else: "") %>
+    <link phx-track-static rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>" />
+    <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+  </head>
+
+  <body class="flex flex-col mb-64">
+    <header class="bg-owhite flex items-center justify-center">
+      <div class="w-full max-w-screen-lg">
+        <nav class="flex items-center justify-between px-6 lg:px-0 <%= if assigns[:noHeaderBorder], do: "", else: "border-gray-300 border-b mb-6" %> w-full" aria-label="Global">
+          <div class="w-full py-4 flex items-center justify-between">
+            <a href="/">
+              <h1 class="text-oblack text-3xl">StripCode</h1>
+            </a>
+            <a href="<%= if assigns[:noHeaderBorder], do: "/ranked", else: "/leaderboard" %>"><%= if assigns[:noHeaderBorder], do: "play", else: "leaderboard" %></a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <div class="mb-auto flex items-center justify-center mt-2 <%= if assigns[:noHeaderBorder], do: "", else: "px-6 lg:px-12 " %>">
+      <div class="w-full max-w-screen-lg"><%= @inner_content %></div>
+    </div>
+  </body>
+
+</html>
