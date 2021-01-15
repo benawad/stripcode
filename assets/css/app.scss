@@ -125,3 +125,18 @@ code {
 -o-user-select: none;
 user-select: none;
 }
+
+@screen 2xl {
+  .code-half {
+    width: 800px;
+  }
+  .answer-half {
+    width: 400px;
+  }
+}
+
+@media (max-width: 1536px) {
+  .bottom-wrapper {
+    @apply w-full max-w-screen-lg mx-auto;
+  }
+}

@@ -1,4 +1,5 @@
-<div class="flex items-center flex-wrap">
+<div class="w-full max-w-screen-lg mx-auto">
+<div class="flex items-center flex-wrap " >
   <form phx-change="update">
   <select name="lang" class="mr-4 mt-2">
     <%= for l <- ["all languages",
@@ -22,9 +23,11 @@
 <div class="mr-4 mt-2 text-lg">Your Total Points: <%= @totalPoints %></div>
 <div class="mr-4 mt-2 text-lg">Your Rank: #<%= @currentRank - 1 %></div>
 <div class="mt-2 text-lg">Active users: <%= @numActiveUsers %></div>
-</div>
+</div></div>
 <%= if assigns[:code] do %>
-<div class="text-3xl mt-4 mb-4">Which repo is the code below from?</div>
+<div class="2xl:flex 2xl:flex-row-reverse 2xl:justify-center bottom-wrapper">
+<div class="2xl:ml-8 answer-half" >
+<div class="text-3xl my-4">Which repo is the code below from?</div>
 <%= for item <- @answers do %>
 <div class="mb-4">
   <button
@@ -40,27 +43,6 @@
     <span class="text-lblack text-sm"> <%= item.description %> </span>
   </button>
 </div>
-<% end %>
-<h1 class="my-8 text-4xl"><%= @filename %></h1>
-<pre onmousedown='return false;' onselectstart='return false;' class="mb-8 w-full rounded">
-  <code  onmousedown='return false;' onselectstart='return false;' phx-hook="CodeSnippet" id="main-code-block" class="language-<%= String.replace(String.replace(@codeLang, "+", "p"), "-", "") %>>">
-<%= @code %>
-</code>
-</pre>
-<div class="mr-2 mb-4 text-lg"><%= @points %> points</div>
-<%= if @numRemainingBlocks > 0 and not @timer do %>
-<button
-  class="mb-4 mr-2 py-2 px-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none"
-  phx-click="showAnotherBlock"
->
-  reveal next block (<%= @numRemainingBlocks %> remaining)
-</button>
-<button
-  class="mb-4 py-2 px-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none"
-  phx-click="showEntireCode"
->
-  show all code
-</button>
 <% end %>
  <%= if @guessGitHubRepoId != "" do %>
 <div class="mt-12 mb-4 flex">
@@ -79,6 +61,28 @@
   phx-click="nextQuestion"
 >
   next question
+</button>
+<% end %></div>
+<div class="overflow-x-auto code-half">
+<h1 class="my-8 text-4xl"><%= @filename %></h1>
+<pre onmousedown='return false;' onselectstart='return false;' class="mb-8 w-full rounded">
+  <code  onmousedown='return false;' onselectstart='return false;' phx-hook="CodeSnippet" id="main-code-block" class="language-<%= String.replace(String.replace(@codeLang, "+", "p"), "-", "") %>>">
+<%= @code %>
+</code>
+</pre>
+<div class="mr-2 mb-4 text-lg"><%= @points %> points</div></div></div>
+<%= if @numRemainingBlocks > 0 and not @timer do %>
+<button
+  class="mb-4 mr-2 py-2 px-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none"
+  phx-click="showAnotherBlock"
+>
+  reveal next block (<%= @numRemainingBlocks %> remaining)
+</button>
+<button
+  class="mb-4 py-2 px-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none"
+  phx-click="showEntireCode"
+>
+  show all code
 </button>
 <% end %>
 <% else %>

@@ -206,7 +206,7 @@ defmodule OnlyCodesWeb.RankedLive do
 
   @impl true
   def render(%{page: "loading"} = assigns) do
-    ~L"<div>loading...</div>"
+    ~L"<div class='text-center'>loading...</div>"
   end
 
   @impl true
