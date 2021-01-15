@@ -18,8 +18,8 @@ defmodule OnlyCodes.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:username, :githubId, :avatarUrl, :currentProblems])
-    |> validate_required([:username, :githubId, :avatarUrl, :currentProblems])
+    |> cast(attrs, [:username, :githubId, :avatarUrl])
+    |> validate_required([:username, :githubId, :avatarUrl])
     |> unique_constraint(:username)
     |> unique_constraint(:githubId)
   end
