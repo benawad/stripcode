@@ -7,7 +7,7 @@ defmodule OnlyCodesWeb.Router do
 
     case session do
       %{"current_user" => %{userId: _, version: 1}} -> conn
-      _ -> redirect(conn, to: "/auth/github")
+      _ -> redirect(conn, to: "/auth/github") |> halt()
     end
   end
 
