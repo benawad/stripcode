@@ -27,23 +27,6 @@
 <%= if assigns[:code] do %>
 <div class="2xl:flex 2xl:flex-row-reverse 2xl:justify-center bottom-wrapper">
 <div class="2xl:ml-8 answer-half" >
-<div class="text-3xl my-4">Which repo is the code below from?</div>
-<%= for item <- @answers do %>
-<div class="mb-4">
-  <button
-    class="bg-sandy <%= if @guessGitHubRepoId == item.githubRepoId, do:
-    "bg-red-100", else: "" %> <%= if @publicCorrectGitHubRepoId ==
-    item.githubRepoId, do: "bg-green-100", else: "" %> rounded px-4 py-4
-    text-left <%= if @publicCorrectGitHubRepoId != "", do: "", else:
-    "hover:border-gray-400" %> border" phx-click="onAnswer"
-    phx-value-githubRepoId="<%= item.githubRepoId %>"
-    <%= if @publicCorrectGitHubRepoId != "", do: "disabled", else: "" %>
-    >
-    <span class="text-bblack font-medium"><%= item.ownerAndName %></span> <br />
-    <span class="text-lblack text-sm"> <%= item.description %> </span>
-  </button>
-</div>
-<% end %>
  <%= if @guessGitHubRepoId != "" do %>
 <div class="mt-12 mb-4 flex">
   <%= if @guessGitHubRepoId == @publicCorrectGitHubRepoId do %>
@@ -62,7 +45,25 @@
 >
   next question
 </button>
-<% end %></div>
+<% end %>
+<div class="text-3xl my-4">Which repo is the code below from?</div>
+<%= for item <- @answers do %>
+<div class="mb-4">
+  <button
+    class="bg-sandy <%= if @guessGitHubRepoId == item.githubRepoId, do:
+    "bg-red-100", else: "" %> <%= if @publicCorrectGitHubRepoId ==
+    item.githubRepoId, do: "bg-green-100", else: "" %> rounded px-4 py-4
+    text-left <%= if @publicCorrectGitHubRepoId != "", do: "", else:
+    "hover:border-gray-400" %> border" phx-click="onAnswer"
+    phx-value-githubRepoId="<%= item.githubRepoId %>"
+    <%= if @publicCorrectGitHubRepoId != "", do: "disabled", else: "" %>
+    >
+    <span class="text-bblack font-medium"><%= item.ownerAndName %></span> <br />
+    <span class="text-lblack text-sm"> <%= item.description %> </span>
+  </button>
+</div>
+<% end %>
+</div>
 <div class="overflow-x-auto code-half">
 <h1 class="my-8 text-4xl"><%= @filename %></h1>
 <pre onmousedown='return false;' onselectstart='return false;' class="mb-8 w-full rounded">
