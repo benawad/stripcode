@@ -24,6 +24,23 @@
 <div class="mt-2 text-lg">Active users: <%= @numActiveUsers %></div>
 </div>
 <%= if assigns[:code] do %>
+<div class="text-3xl mt-4 mb-4">Which repo is the code below from?</div>
+<%= for item <- @answers do %>
+<div class="mb-4">
+  <button
+    class="bg-sandy <%= if @guessGitHubRepoId == item.githubRepoId, do:
+    "bg-red-100", else: "" %> <%= if @publicCorrectGitHubRepoId ==
+    item.githubRepoId, do: "bg-green-100", else: "" %> rounded px-4 py-4
+    text-left <%= if @publicCorrectGitHubRepoId != "", do: "", else:
+    "hover:border-gray-400" %> border" phx-click="onAnswer"
+    phx-value-githubRepoId="<%= item.githubRepoId %>"
+    <%= if @publicCorrectGitHubRepoId != "", do: "disabled", else: "" %>
+    >
+    <span class="text-bblack font-medium"><%= item.ownerAndName %></span> <br />
+    <span class="text-lblack text-sm"> <%= item.description %> </span>
+  </button>
+</div>
+<% end %>
 <h1 class="my-8 text-4xl"><%= @filename %></h1>
 <pre onmousedown='return false;' onselectstart='return false;' class="mb-8 w-full rounded">
   <code  onmousedown='return false;' onselectstart='return false;' phx-hook="CodeSnippet" id="main-code-block" class="language-<%= String.replace(String.replace(@codeLang, "+", "p"), "-", "") %>>">
@@ -45,23 +62,7 @@
   show all code
 </button>
 <% end %>
-<div class="text-3xl mt-4 mb-4">Which repo is the code from?</div>
-<%= for item <- @answers do %>
-<div class="mb-4">
-  <button
-    class="bg-sandy <%= if @guessGitHubRepoId == item.githubRepoId, do:
-    "bg-red-100", else: "" %> <%= if @publicCorrectGitHubRepoId ==
-    item.githubRepoId, do: "bg-green-100", else: "" %> rounded px-4 py-4
-    text-left <%= if @publicCorrectGitHubRepoId != "", do: "", else:
-    "hover:border-gray-400" %> border" phx-click="onAnswer"
-    phx-value-githubRepoId="<%= item.githubRepoId %>"
-    <%= if @publicCorrectGitHubRepoId != "", do: "disabled", else: "" %>
-    >
-    <span class="text-bblack font-medium"><%= item.ownerAndName %></span> <br />
-    <span class="text-lblack text-sm"> <%= item.description %> </span>
-  </button>
-</div>
-<% end %> <%= if @guessGitHubRepoId != "" do %>
+ <%= if @guessGitHubRepoId != "" do %>
 <div class="mt-12 mb-4 flex">
   <%= if @guessGitHubRepoId == @publicCorrectGitHubRepoId do %>
   <div class="bg-green-100 text-green-900 flex p-4 text-3xl rounded">
