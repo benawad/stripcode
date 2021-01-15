@@ -8,6 +8,10 @@
   <a href="https://github.com/benawad/stripcode">(coded with Elixir and the Phoenix framework)</a>
 </div>
 <h1 class="mt-16 text-3xl mb-2">FAQ</h1>
+<h1 class="mt-6 text-2xl mb-2">Tell me more about this</h1>
+<div class="mb-4">
+  <a href="https://youtu.be/pXDM5CA47Mg">https://youtu.be/pXDM5CA47Mg</a>
+</div>
 <h1 class="mt-6 text-2xl mb-2">How did you pick which repos to include?</h1>
 <ul class="mb-4">
   <li>I picked the 1,000 most starred repos on GitHub.</li>
