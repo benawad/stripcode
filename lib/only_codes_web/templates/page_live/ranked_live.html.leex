@@ -17,6 +17,7 @@
     "go",
     "php",
     "haskell",
+    "rust",
     ] do %>
     <option <%= if l == @currentLang, do: "selected", else: "" %> value="<%= l %>"><%= l %></option>
     <% end %>
